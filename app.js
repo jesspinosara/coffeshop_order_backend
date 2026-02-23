@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const orderRoutes = require("./routes/orders");
 require("dotenv").config();
 
 const { PORT = 3000 } = process.env;
@@ -12,11 +13,22 @@ app.use(express.json());
 mongoose
   .connect("mongodb://localhost:27017/coffeeshop_db")
   .then(() => {
-    console.log("Connected to MongoDB");
+    console.log("Conectado a MongoDB");
   })
   .catch((err) => {
-    console.error("Mongo connection error:", err);
+    console.error("Error de conexión:", err);
   });
+
+app.use("/orders", orderRoutes);
+
+//Middleware manejor centralizado de errores
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message } = err;
+
+  res.status(statusCode).send({
+    message: statusCode === 500 ? "Ocurrió un error en el servidor" : message,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
