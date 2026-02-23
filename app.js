@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
 const orderRoutes = require("./routes/orders");
 require("dotenv").config();
 
@@ -9,6 +10,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(requestLogger);
 
 mongoose
   .connect("mongodb://localhost:27017/coffeeshop_db")
@@ -20,6 +23,8 @@ mongoose
   });
 
 app.use("/orders", orderRoutes);
+
+app.use(errorLogger);
 
 //Middleware manejor centralizado de errores
 app.use((err, req, res, next) => {
