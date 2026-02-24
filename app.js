@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { errors } = require("celebrate");
 const orderRoutes = require("./routes/orders");
 require("dotenv").config();
 
@@ -25,6 +26,8 @@ mongoose
 app.use("/orders", orderRoutes);
 
 app.use(errorLogger);
+
+app.use(errors());
 
 //Middleware manejor centralizado de errores
 app.use((err, req, res, next) => {
