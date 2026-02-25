@@ -1,10 +1,10 @@
 const express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { errors } = require("celebrate");
 const orderRoutes = require("./routes/orders");
-require("dotenv").config();
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -14,8 +14,11 @@ app.use(express.json());
 
 app.use(requestLogger);
 
+const mongoUrl =
+  process.env.MONGO_URL || "mongodb://localhost:27017/coffeeshop_db";
+
 mongoose
-  .connect("mongodb://localhost:27017/coffeeshop_db")
+  .connect(mongoUrl)
   .then(() => {
     console.log("Conectado a MongoDB");
   })
