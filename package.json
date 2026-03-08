@@ -1,9 +1,11 @@
 {
   "name": "coffeshop_order_backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend API for Coffee Shop Order App",
+  "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,7 +13,7 @@
     "url": "git+https://github.com/jesspinosara/coffeshop_order_backend.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jessica Espinosa",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jesspinosara/coffeshop_order_backend/issues"
@@ -19,14 +21,18 @@
   "homepage": "https://github.com/jesspinosara/coffeshop_order_backend#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "express-winston": "^4.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.1",
-    "validator": "^13.15.26"
+    "validator": "^13.15.26",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
-    "eslint": "^10.0.0",
+    "eslint": "^4.1.1",
     "nodemon": "^3.1.11"
   }
 }
