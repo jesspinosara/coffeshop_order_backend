@@ -12,7 +12,7 @@ const createOrder = async (req, res, next) => {
     // Buscar si el usuario ya existe por su email
     let user = await User.findOne({ email });
     if (!user) {
-      const hasehdPassword = await bcrypt.hash("default123", 10);
+      const hasheddPassword = await bcrypt.hash("default123", 10);
       user = await User.create({
         name,
         email,
