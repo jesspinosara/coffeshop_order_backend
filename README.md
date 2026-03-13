@@ -19,7 +19,8 @@ El proyecto está diseñado para escalar. Las siguientes funcionalidades convert
   - Sistema de acumulación de puntos por cada café comprado.
   - Promociones automáticas (ej. "Bebida de cortesía por cada 5 pedidos").
 - **Autenticación Segura:** Evolución hacia el uso de **JWT (JSON Web Tokens)** para permitir que los usuarios reclamen sus beneficios de forma segura en cualquier dispositivo.
-- **Pasarela de Pagos:** Integración con servicios como Stripe para procesar pagos en línea al momento de confirmar la orden.
+- **Frontend & UX:**
+  -Panel de Administración (Barista View): Creación de una interfaz protegida para visualizar y gestionar los pedidos entrantes en tiempo real.
 
 ## Tecnologías utilizadas
 
