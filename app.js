@@ -9,11 +9,6 @@ const orderRoutes = require("./routes/orders");
 const { PORT = 3000 } = process.env;
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-
-app.use(requestLogger);
-
 const mongoUrl =
   process.env.MONGO_URL || "mongodb://localhost:27017/coffeeshop_db";
 
@@ -25,6 +20,32 @@ mongoose
   .catch((err) => {
     console.error("Error de conexión:", err);
   });
+
+const allowedOrigins = [
+  "https://ordena.ambientcoffee.com",
+  "https://www.ordena.ambientcoffee.com",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
+app.use(express.json());
+
+app.use(requestLogger);
 
 app.use("/orders", orderRoutes);
 
