@@ -12,6 +12,7 @@ router.post(
       drinkName: Joi.string().required(),
 
       totalPrice: Joi.number().required(),
+      quantity: Joi.number().optional(),
       selections: Joi.object().required(),
     }),
   }),

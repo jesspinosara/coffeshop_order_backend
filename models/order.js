@@ -3,12 +3,10 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
   drinkName: { type: String, required: true },
   totalPrice: { type: Number, required: true },
-  quantity: { type: Number, required: true },
+  quantity: { type: Number, default: 1 },
   selections: {
-    size: String,
-    milk: String,
-    ice: String,
-    sweetness: String,
+    type: Object,
+    required: true,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
